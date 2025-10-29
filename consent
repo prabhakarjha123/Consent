@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details & Tracking Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .tracking-info {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Personal Information Table</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Date of Birth (DOB)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice Johnson</td>
+                <td>30</td>
+                <td>1995-07-15</td>
+            </tr>
+            <tr>
+                <td>Bob Smith</td>
+                <td>24</td>
+                <td>2001-02-28</td>
+            </tr>
+            <tr>
+                <td>Charlie Brown</td>
+                <td>45</td>
+                <td>1980-11-01</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+
+    <h2>🌐 Web Tracking Technologies Demo</h2>
+
+    <div class="tracking-info">
+        <h3>1. HTTP Cookie (Client-Side Storage)</h3>
+        <p>This is a demonstration of how a **First-Party Cookie** is set and read using JavaScript.</p>
+        <p id="cookieStatus">Checking for a tracking cookie...</p>
+        
+        <script>
+            // Set a cookie that expires in 1 day
+            document.cookie = "user_id=abc123xyz; expires=" + new Date(Date.now() + 86400000).toUTCString() + "; path=/";
+
+            // Check if the cookie was set
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('user_id='))?.split('=')[1];
+
+            if (cookieValue) {
+                document.getElementById('cookieStatus').innerHTML = '✅ **Cookie Set/Read:** A tracking cookie with value **user_id=' + cookieValue + '** has been successfully set and read.';
+            } else {
+                document.getElementById('cookieStatus').innerHTML = '❌ **Cookie Not Found:** Could not set or read the tracking cookie.';
+            }
+        </script>
+    </div>
+
+    <div class="tracking-info">
+        <h3>2. Simple Pixel Tracking (Image Beacon)</h3>
+        <p>This invisible image (often 1x1 pixel) sends a request to a server, which can record information like the user's IP, time of visit, and page viewed.</p>
+        <p>*(The browser loads this image without showing anything, sending data in the background.)*</p>
+        
+        <img src="https://example.com/track/pixel.gif?page=details" alt="Tracking Pixel" style="width:1px; height:1px; border:0; display:none;" aria-hidden="true">
+        
+    </div>
+
+    <div class="tracking-info">
+        <h3>3. Local Storage (Persistent Client-Side Data)</h3>
+        <p>Local Storage is a more modern way to store larger amounts of persistent data in the browser, often used for user preferences or persistent identifiers.</p>
+        <p id="localStorageStatus">Checking Local Storage...</p>
+
+        <script>
+            // Set a Local Storage item
+            localStorage.setItem('session_token', 'token-jkl789');
+
+            // Read the Local Storage item
+            const token = localStorage.getItem('session_token');
+
+            if (token) {
+                document.getElementById('localStorageStatus').innerHTML = '✅ **Local Storage Set/Read:** Stored value **session_token=' + token + '** in the browser\'s Local Storage.';
+            } else {
+                 document.getElementById('localStorageStatus').innerHTML = '❌ **Local Storage Not Found:** Could not set or read the Local Storage item.';
+            }
+        </script>
+    </div>
+
+</body>
+</html>
