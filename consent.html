@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Details & Tracking Demo</title>
+    
+    <!-- Third-Party Cookie Banner and Preference Center Script -->
+    <!-- This script is added to handle user consent before setting tracking technologies. -->
+<script data-relyance-consent-appId="app-cb71a504-1bda-58e9-ae28-ffdadc69885e" data-relyance-autoblock="true" src="https://consent.app.relyancestage.xyz/relyance-agent.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +38,7 @@
 
     <h1>Personal Information Table</h1>
 
+    <!-- Table for Name, Age, DOB Details -->
     <table>
         <thead>
             <tr>
@@ -65,6 +70,7 @@
 
     <h2>🌐 Web Tracking Technologies Demo</h2>
 
+    <!-- Section demonstrating tracking technologies -->
     <div class="tracking-info">
         <h3>1. HTTP Cookie (Client-Side Storage)</h3>
         <p>This is a demonstration of how a **First-Party Cookie** is set and read using JavaScript.</p>
@@ -78,7 +84,7 @@
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('user_id='))?.split('=')[1];
 
             if (cookieValue) {
-                document.getElementById('cookieStatus').innerHTML = '✅ **Cookie Set/Read:** A tracking cookie with value **user_id=' + cookieValue + '** has been successfully set and read.';
+                document.getElementById('cookieStatus').innerHTML = '✅ **Cookie Set/Read:** A tracking cookie with value **user_id=' + cookieValue + '** has been successfully set and read. *Note: The CMP might block this in a real environment.*';
             } else {
                 document.getElementById('cookieStatus').innerHTML = '❌ **Cookie Not Found:** Could not set or read the tracking cookie.';
             }
@@ -87,16 +93,16 @@
 
     <div class="tracking-info">
         <h3>2. Simple Pixel Tracking (Image Beacon)</h3>
-        <p>This invisible image (often 1x1 pixel) sends a request to a server, which can record information like the user's IP, time of visit, and page viewed.</p>
+        <p>This invisible image sends a request to a server, recording information like IP and page view.</p>
         <p>*(The browser loads this image without showing anything, sending data in the background.)*</p>
         
+        <!-- A typical implementation of a tracking pixel, pointing to a placeholder URL -->
         <img src="https://example.com/track/pixel.gif?page=details" alt="Tracking Pixel" style="width:1px; height:1px; border:0; display:none;" aria-hidden="true">
-        
     </div>
 
     <div class="tracking-info">
         <h3>3. Local Storage (Persistent Client-Side Data)</h3>
-        <p>Local Storage is a more modern way to store larger amounts of persistent data in the browser, often used for user preferences or persistent identifiers.</p>
+        <p>Local Storage is used to store larger amounts of persistent data in the browser.</p>
         <p id="localStorageStatus">Checking Local Storage...</p>
 
         <script>
@@ -107,7 +113,7 @@
             const token = localStorage.getItem('session_token');
 
             if (token) {
-                document.getElementById('localStorageStatus').innerHTML = '✅ **Local Storage Set/Read:** Stored value **session_token=' + token + '** in the browser\'s Local Storage.';
+                document.getElementById('localStorageStatus').innerHTML = '✅ **Local Storage Set/Read:** Stored value **session_token=' + token + '** in the browser\'s Local Storage. *Note: The CMP might block this in a real environment.*';
             } else {
                  document.getElementById('localStorageStatus').innerHTML = '❌ **Local Storage Not Found:** Could not set or read the Local Storage item.';
             }
